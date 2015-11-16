@@ -1,0 +1,57 @@
+<article class="bottom-space">
+
+<% unless @article.cover_file_name.nil? %>
+
+	<header style="background:url(<%= @article.cover.url(:thumb) %>);top:0px;left:0px;width:100%;height:350px;background-size: cover;">		
+</header>
+
+
+
+<%end%>
+
+	<div class="row center-xs">
+		<div class="col-xs-12 light-border col-md-7">
+
+			<h1 class="be-big blue"><%= @article.title %></h1>
+			<p class="text-right be-small">
+			<%= link_to "Atras", articles_path, class:"underline" %> |
+			 <span class="red"><%= @article.visits %> visita(s) </span>
+			<% unless @article.user.nil?%>
+			| Escrito por [<%= @article.user.email %>]
+			<%end%>
+
+			</p>
+
+			<div class="text-left">
+
+			<div>
+				<%= @article.body %>
+			</div>
+
+			<div class="field">
+				Categoria(s):
+				<% @article.categories.each do |category| %>
+
+				<%= link_to category.name, category, style:"color:#{category.color};" %>
+
+				<%end%>
+			</div>
+			<div class="top-space">
+				<%= link_to "[Editar]", edit_article_path(@article), class:"edit" %>
+			</div>
+
+		</div>
+
+			<div class="top-space field">
+				<h3>Comentarios</h3>
+				<%= render "comments/form" %>
+
+				<ul>
+				<% @article.comments.each do |comment| %>
+					<li><%= comment.body %> - Por: <%= comment.user.email %></li>
+				<%end%>
+				</ul>
+			</div>
+		</div>
+	</div>
+</article>

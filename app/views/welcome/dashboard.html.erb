@@ -1,0 +1,15 @@
+<h1>Bievenido Admin :D</h1>
+<% if user_signed_in? %>
+<p>Tu te has logeado con el correo:  <%= current_user.email%></p>
+<% end %>
+
+<% @articles.each do |article| %>
+	<h1><%= link_to  article.title, article %></h1>
+	<div>
+		<%= article.body %> -[<%= link_to "Eliminar", article, method: :delete, class:"red" %>] 
+
+		<% if article.may_publish? %>
+		| [<%= link_to "Publicar", "/articles/#{article.id}/publish", method: :put, class:"blue" %>]
+		<%end%>
+	</div>
+<% end %>

@@ -1,0 +1,14 @@
+
+<div class="row center-xs">
+	<div class="col-xs-12 light-border col-md-7">
+
+		<h1 class="welcome">Bievenidos al Blog Hdez</h1>
+		<% if user_signed_in? %>
+		<p>Tu te has logeado como:  <%= current_user.email%></p>
+		<% end %>
+
+		<img src="omar.jpg" width="320px" height="320px">
+
+		<p>Hola!, Soy Omar y este es un Blog desarrollado en Ruby On Rails :)...Enjoy!</p>
+	</div>
+</div>
